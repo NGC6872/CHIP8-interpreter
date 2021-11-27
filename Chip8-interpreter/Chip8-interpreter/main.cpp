@@ -96,7 +96,7 @@ int main(int argc, char* argv[]) {
     CPU cpu;
     cpu.Reset();
 
-    fstream file("cavern.ch8", ios::in | ios::out | ios::binary);
+    fstream file("heart_monitor.ch8", ios::in | ios::out | ios::binary);
 
     file.seekg(0);
 
@@ -131,8 +131,6 @@ int main(int argc, char* argv[]) {
                 running = false;
 
             }
-
-
 
         }
 

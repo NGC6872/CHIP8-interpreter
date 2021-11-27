@@ -326,7 +326,7 @@
                     unsigned char pixel = (unsigned char)((mem >> (7 - jj)) & 0x01);
                     int index = x + jj + (y + ii) * 64;
     
-                    //if (index > 2047) continue;
+                    if (index > 2047) continue;
 
                     if (pixel == 1 && Display[index] != 0) Registers[15] = 1;
 
@@ -531,7 +531,8 @@
     bool CPU::loadRom(vector<unsigned char> program) {
     
         memset(RAM, 0, sizeof(RAM));
-    
+        memset(Display, 0, sizeof(Display));
+
         InitializeFont();
 
         for (int ii = 0; ii < program.size(); ii++) {
