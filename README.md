@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # About
 Just thought I'd make another CHIP-8 interpreter in c++
 
@@ -26,17 +25,14 @@ a CHIP-8 interpreter called CHIP-48 which allowed the calculator to easily creat
 
                     Opcodes:   CHIP-8 has 35 opcodes, all of which are two bytes long and stored big-endian. 
 
-# Setup:
-Must have SDL2 installed for this program to work correctly. 
+# Setup (visual studio 2021):
+git clone https://github.com/NGC6872/CHIP8-interpreter.git
 
-Here's a video on how to do that: https://www.youtube.com/watch?v=PrDdfALWH_4
+File -> New -> Project from existing code -> select previously cloned repo
+
+Install SDL2 - Here's a quick video on how to do that: https://www.youtube.com/watch?v=PrDdfALWH_4
 
 # Resources: 
 http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
 
 https://en.wikipedia.org/wiki/CHIP-8
-             
-=======
-# CHIP8-interpreter
-A CHIP-8 interpreter written in C++
->>>>>>> 98fc322963c61ae4391fff4a6f8e6c52eb40d55a
