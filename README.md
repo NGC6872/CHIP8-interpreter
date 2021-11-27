@@ -27,7 +27,9 @@ a CHIP-8 interpreter called CHIP-48 which allowed the calculator to easily creat
 
 # Setup (visual studio 2021):
 git clone https://github.com/NGC6872/CHIP8-interpreter.git
+
 File -> New -> Project from existing code -> select previously cloned repo
+
 Install SDL2 - Here's a quick video on how to do that: https://www.youtube.com/watch?v=PrDdfALWH_4
 
 # Resources: 
