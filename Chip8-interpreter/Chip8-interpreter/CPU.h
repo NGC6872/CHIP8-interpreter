@@ -30,7 +30,7 @@
                 
         	    unsigned char DelayTimer;
         	    unsigned char SoundTimer;
-        	    unsigned char Keyboard;
+        	    unsigned short Keyboard;
                 unsigned int Display[64 * 32];
         
                
@@ -38,6 +38,8 @@
                 void InitializeFont();
                 void Reset();
                 void DrawDisplay();
+                int KeyCodeToKey(int keycode);
+                void KeyPressed(unsigned char key);
                 bool loadRom(vector<unsigned char>);
                 
                 bool WaitingForKeyPress = false;

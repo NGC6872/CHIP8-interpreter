@@ -65,6 +65,7 @@
 
 //  ===================
 #include "SDL.h"
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -73,13 +74,14 @@
 #include <chrono>
 #include <vector>
 #include <stdint.h>
+#include <math.h>
 #include "CPU.h"
 
 //  ===================
 
-using namespace std;
+    using namespace std;
 
-//  ==================================
+//  ==============================
 int main(int argc, char* argv[]) {
 
    
@@ -89,6 +91,7 @@ int main(int argc, char* argv[]) {
 
     }
 
+   
     SDL_Window* windowPtr = SDL_CreateWindow("Chip-8 Interpreter", 200, 200, 64 * 8, 32 * 8, SDL_WINDOW_RESIZABLE);
 
     SDL_Renderer* renderer = SDL_CreateRenderer(windowPtr, -1, SDL_RENDERER_ACCELERATED);
@@ -96,7 +99,7 @@ int main(int argc, char* argv[]) {
     CPU cpu;
     cpu.Reset();
 
-    fstream file("heart_monitor.ch8", ios::in | ios::out | ios::binary);
+    fstream file("PONG", ios::in | ios::out | ios::binary);
 
     file.seekg(0);
 
@@ -120,6 +123,10 @@ int main(int argc, char* argv[]) {
     SDL_Surface* sdlSurface;
     SDL_Texture* sdlTexture;
 
+    std::chrono::time_point<std::chrono::system_clock> start;
+
+    start = std::chrono::system_clock::now();
+
     while (running) {
 
         cpu.Step();
@@ -132,20 +139,52 @@ int main(int argc, char* argv[]) {
 
             }
 
+            else if (sdlEvent.type == SDL_KEYDOWN) {
+
+                auto key = cpu.KeyCodeToKey((int)sdlEvent.key.keysym.sym);
+                cpu.Keyboard |= (unsigned short)key;
+
+            }
+
+            else if (sdlEvent.type == SDL_KEYUP) {
+
+                auto key = cpu.KeyCodeToKey((int)sdlEvent.key.keysym.sym);
+                cpu.Keyboard &= (unsigned short)~key;
+
+            }
+            
         }
 
-        sdlSurface = SDL_CreateRGBSurfaceFrom(&cpu.Display, 64, 32, 32, 64 * 4, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(start.time_since_epoch()).count() > 16) {
 
-        sdlTexture = SDL_CreateTextureFromSurface(renderer, sdlSurface);
+            sdlSurface = SDL_CreateRGBSurfaceFrom(&cpu.Display, 64, 32, 32, 64 * 4, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
 
-        SDL_RenderClear(renderer);
+            sdlTexture = SDL_CreateTextureFromSurface(renderer, sdlSurface);
 
-        SDL_RenderCopy(renderer, sdlTexture, NULL, NULL);
+            SDL_RenderClear(renderer);
 
-        SDL_RenderPresent(renderer);
+            SDL_RenderCopy(renderer, sdlTexture, NULL, NULL);
+
+            SDL_RenderPresent(renderer);
+
+            SDL_DestroyTexture(sdlTexture);
+
+            start = std::chrono::system_clock::now(); // restart timer
+
+        }
+
+        //std::this_thread::sleep_for(std::chrono::milliseconds(1));
+
     }
 
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(windowPtr);
+    
+    SDL_FreeSurface(sdlSurface);
+   
     return 0;
 
 } // Function main()
 //  ====================
+    
+    

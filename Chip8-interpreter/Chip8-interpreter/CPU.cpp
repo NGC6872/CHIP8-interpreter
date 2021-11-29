@@ -41,20 +41,20 @@
 
             if (DelayTimer > 0) DelayTimer--;
             if (SoundTimer > 0) SoundTimer--;
-            start = std::chrono::system_clock::now();
+            start = std::chrono::system_clock::now(); // reset clock
 
         }
 
-        auto Opcode = (unsigned short)((RAM[PC] << 8) | RAM[PC + 1]);
-    
-        if (WaitingForKeyPress) {
-    
-            Registers[(Opcode & 0x0F00) >> 8] = Keyboard;
+        auto Opcode = (unsigned short)((RAM[PC] << 8) | RAM[PC + 1]); // First instruction: (0x00 >> 8) | 0xe0 
+                                                                      // 0x00000000 | 0xe0
+        if (WaitingForKeyPress) {                                     // 00000000 | 11100000
+                                                                      // 11100000
+           // Registers[(Opcode & 0x0F00) >> 8] = Keyboard;             
             return;
     
         }
     
-    	unsigned short nibble = (unsigned short)(Opcode & 0xF000);
+    	unsigned short nibble = (unsigned short)(Opcode & 0xF000); // First instruction: nibble = 0x0000
     
         PC += 2;
     
@@ -358,7 +358,7 @@
                 }
             }
 
-            if (shouldSleep) std::this_thread::sleep_for(std::chrono::milliseconds(20));
+           // if (shouldSleep) std::this_thread::sleep_for(std::chrono::milliseconds(0));
 
         }
         break;
@@ -551,22 +551,18 @@
 //  ===================
     void CPU::Reset() {
 
-   
         PC = 0;    // The first 512(0x200) bytes of memory are reserved
         
         I = 0;        // Reset index register
         
-
         // Reset the timers
         DelayTimer = 0;
         SoundTimer = 0;
-
 
         // reset RAM
         
         memset(RAM, 0, sizeof(RAM));
     
-
     } // Function Reset()
 //  =====================
 
@@ -598,7 +594,27 @@
     
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        //std::this_thread::sleep_for(std::chrono::milliseconds(5));
      
     } // Function DrawDisplay()
 //  ===========================
+
+    int CPU::KeyCodeToKey(int keycode) {
+
+        int keyIndex = 0;
+
+        if (keycode < 58) {
+
+            keyIndex = keycode - 48;
+
+        }
+
+        else {
+
+            keyIndex = keycode - 87;
+
+        }
+
+        return (1 << keyIndex);
+
+    }
