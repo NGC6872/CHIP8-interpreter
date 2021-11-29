@@ -24,8 +24,11 @@ a CHIP-8 interpreter called CHIP-48 which allowed the calculator to easily creat
                     Graphics:  64 x 32 display resolution, and the color is monochrome.
 
                     Opcodes:   CHIP-8 has 35 opcodes, all of which are two bytes long and stored big-endian. 
+                    
+# TODO:
+Implement sound
 
-# Setup (visual studio 2021):
+# Setup (Visual Studio 2019):
 git clone https://github.com/NGC6872/CHIP8-interpreter.git
 
 File -> New -> Project from existing code -> select previously cloned repo
