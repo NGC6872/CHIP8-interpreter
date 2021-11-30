@@ -3,6 +3,7 @@
 //  ============
 
 //  ===================
+    
     #include <iostream>
     #include <stack>
     #include <vector>
@@ -39,7 +40,7 @@
                 void Reset();
                 void DrawDisplay();
                 int KeyCodeToKey(int keycode);
-                void KeyPressed(unsigned char key);
+                
                 bool loadRom(vector<unsigned char>);
                 
                 bool WaitingForKeyPress = false;

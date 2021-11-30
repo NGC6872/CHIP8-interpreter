@@ -12,7 +12,8 @@
 #include <thread>
 #include <time.h>
 
-//  ==========
+
+//  ============
     CPU::CPU() {
     
     

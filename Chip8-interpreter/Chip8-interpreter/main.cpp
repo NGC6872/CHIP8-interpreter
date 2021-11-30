@@ -64,8 +64,8 @@
 // =============================================
 
 //  ===================
-#include "SDL.h"
-
+   #include "SDL.h"
+   
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -76,6 +76,7 @@
 #include <stdint.h>
 #include <math.h>
 #include "CPU.h"
+#include "Audio.h"
 
 //  ===================
 
@@ -84,7 +85,8 @@
 //  ==============================
 int main(int argc, char* argv[]) {
 
-   
+    Audio audio;
+
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 
         cout << "SDL failed to initialize." << endl; return 0;
@@ -99,7 +101,7 @@ int main(int argc, char* argv[]) {
     CPU cpu;
     cpu.Reset();
 
-    fstream file("PONG", ios::in | ios::out | ios::binary);
+    fstream file("Brick (Brix hack, 1990).ch8", ios::in | ios::out | ios::binary);
 
     file.seekg(0);
 
@@ -128,6 +130,14 @@ int main(int argc, char* argv[]) {
     start = std::chrono::system_clock::now();
 
     while (running) {
+
+        if (cpu.SoundTimer > 0) { 
+       
+            audio.playBeep();
+       
+        }
+
+        else audio.stopAudio();
 
         cpu.Step();
 
@@ -173,7 +183,7 @@ int main(int argc, char* argv[]) {
 
         }
 
-        //std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
     }
 
