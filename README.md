@@ -43,3 +43,5 @@ Both of these libraries are needed for the program to compile correctly.
 http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
 
 https://en.wikipedia.org/wiki/CHIP-8
+
+https://github.com/florianvazelle/Chip8 (For the audio)
