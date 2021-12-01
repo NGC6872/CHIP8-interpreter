@@ -26,7 +26,7 @@ a CHIP-8 interpreter called CHIP-48 which allowed the calculator to easily creat
                     Opcodes:   CHIP-8 has 35 opcodes, all of which are two bytes long and stored big-endian. 
                     
 # TODO:
-Implement sound
+~~Implement sound~~
 
 # Setup (Visual Studio 2019):
 git clone https://github.com/NGC6872/CHIP8-interpreter.git
@@ -37,7 +37,7 @@ Install SDL2 (for graphics) - Here's a quick video on how to do that: https://ww
 
 Install OpenAL Soft (for audio) - Download link: https://openal-soft.org/#download
 
-Both of these libraries are needed for the program to compile correctly.
+_Both_ of these libraries are needed for the program to compile correctly.
 
 # Resources: 
 http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
