@@ -33,7 +33,11 @@ git clone https://github.com/NGC6872/CHIP8-interpreter.git
 
 File -> New -> Project from existing code -> select previously cloned repo
 
-Install SDL2 - Here's a quick video on how to do that: https://www.youtube.com/watch?v=PrDdfALWH_4
+Install SDL2 (for graphics) - Here's a quick video on how to do that: https://www.youtube.com/watch?v=PrDdfALWH_4
+
+Install OpenAL Soft (for audio) - Download link: https://openal-soft.org/#download
+
+Both of these libraries are needed for the program to compile correctly.
 
 # Resources: 
 http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
