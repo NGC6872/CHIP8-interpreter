@@ -40,6 +40,8 @@ Install OpenAL Soft (for audio) - Download link: https://openal-soft.org/#downlo
 _Both_ of these libraries are needed for the program to compile correctly.
 
 # Resources: 
+https://www.youtube.com/watch?v=yjYtA0NVSlU
+
 https://github.com/florianvazelle/Chip8 (For the audio)
 
 http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
